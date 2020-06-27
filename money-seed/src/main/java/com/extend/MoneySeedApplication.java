@@ -26,6 +26,15 @@ public class MoneySeedApplication {
 				
 				u.setId("yonghw2");
 				repo.save(u);
+				
+				u.setId("yonghw3");
+				repo.save(u);
+				
+				u.setId("yonghw4");
+				repo.save(u);
+				
+				u.setId("yonghw5");
+				repo.save(u);
 			}
 		};
 	}

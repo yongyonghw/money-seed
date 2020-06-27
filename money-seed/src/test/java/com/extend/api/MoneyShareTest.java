@@ -45,7 +45,10 @@ public class MoneyShareTest {
 		
 		HttpEntity<String> entity = new HttpEntity<>(headers);
 		
-		payToken = restTemplate.postForObject("http://localhost:8080/money/share/12345/5", entity, Token.class);
+		String money = "10000";
+		String person = "5";
+		
+		payToken = restTemplate.postForObject("http://localhost:8080/money/share/" + money + "/" + person, entity, Token.class);
 		System.out.println(payToken);
 	}
 	
@@ -74,13 +77,62 @@ public class MoneyShareTest {
 	}
 	
 	@Test
+	@Order(2)
+	//받기 (받은 적이 없는 경우) 
+	public void requestShareMoney1() throws JsonParseException, JsonMappingException, IOException {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(MoneyConst.HEADER_USER, "yonghw3");
+		headers.set(MoneyConst.HEADER_ROOM, "ABC");
+		
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+		
+		String r = restTemplate.postForObject("http://localhost:8080/money/share/pay/"
+				+ payToken.getTokenId()
+				, entity, String.class);
+		
+		System.out.println(r);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> m = mapper.readValue(r, Map.class);
+		
+		assertEquals((String)m.get("resultCode"), MoneyConst.CODE.SUCCESS.name());
+	}
+	
+	@Test
 	@Order(3)
-	//받기 (받은 적이 있는 경우) 
+	//받기 (받은 적이 없는 경우) 
 	public void requestShareMoney2() throws JsonParseException, JsonMappingException, IOException {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.set(MoneyConst.HEADER_USER, "yonghw2");
+		headers.set(MoneyConst.HEADER_USER, "yonghw4");
+		headers.set(MoneyConst.HEADER_ROOM, "ABC");
+		
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+		
+		String r = restTemplate.postForObject("http://localhost:8080/money/share/pay/"
+				+ payToken.getTokenId()
+				, entity, String.class);
+		
+		System.out.println(r);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> m = mapper.readValue(r, Map.class);
+		
+		assertEquals((String)m.get("resultCode"), MoneyConst.CODE.SUCCESS.name());
+	}
+	
+	
+	@Test
+	@Order(5)
+	//받기 (받은 적이 있는 경우) 
+	public void requestShareMoney4() throws JsonParseException, JsonMappingException, IOException {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(MoneyConst.HEADER_USER, "yonghw3");
 		headers.set(MoneyConst.HEADER_ROOM, "ABC");
 		
 		HttpEntity<String> entity = new HttpEntity<>(headers);
@@ -97,8 +149,9 @@ public class MoneyShareTest {
 		assertEquals((String)m.get("resultCode"), MoneyConst.CODE.ALREADY_RECIVED.name());
 	}
 	
+	
 	@Test
-	@Order(4)
+	@Order(6)
 	//받기(뿌린자는 받을수 없음 ) 
 	public void requestShareMoney3() throws JsonParseException, JsonMappingException, IOException {
 		RestTemplate restTemplate = new RestTemplate();
@@ -122,7 +175,7 @@ public class MoneyShareTest {
 	}
 	
 	@Test
-	@Order(6)
+	@Order(7)
 	//조회 결과 (뿌린사람이 조회한 경우 ) 
 	public void requestShareResult() throws JsonParseException, JsonMappingException, IOException {
 		RestTemplate restTemplate = new RestTemplate();
@@ -147,7 +200,7 @@ public class MoneyShareTest {
 	}
 	
 	@Test
-	@Order(7)
+	@Order(8)
 	//조회 결과 (뿌리지 않은 사람이 조회한 경우 ) 
 	public void requestShareResult2() throws JsonParseException, JsonMappingException, IOException {
 		RestTemplate restTemplate = new RestTemplate();
