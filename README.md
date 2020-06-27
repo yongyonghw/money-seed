@@ -10,46 +10,25 @@
 
 
 테스트 결과 로그
-
-15:52:52.951 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8080/money/share/10000/5"
-15:52:53.000 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [application/json, application/*+json]
-15:52:53.013 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8080/money/share/10000/5" resulted in 200 (null)
-15:52:53.014 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [class com.extend.api.vo.Token] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@26abb146]
+[토큰생성 뿌리기]
 Token(tokenId=182, createDate=Sat Jun 27 15:52:53 KST 2020)
-15:52:53.035 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8080/money/share/pay/182"
-15:52:53.035 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [text/plain, application/json, application/*+json, */*]
-15:52:53.046 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8080/money/share/pay/182" resulted in 200 (null)
-15:52:53.046 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [java.lang.String] as "application/json;charset=UTF-8" using [org.springframework.http.converter.StringHttpMessageConverter@1500b2f3]
+
+[줍기]
 {"received_money":3285,"resultCode":"SUCCESS","received_id":"yonghw2"}
-15:52:53.087 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8080/money/share/pay/182"
-15:52:53.088 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [text/plain, application/json, application/*+json, */*]
-15:52:53.097 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8080/money/share/pay/182" resulted in 200 (null)
-15:52:53.097 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [java.lang.String] as "application/json;charset=UTF-8" using [org.springframework.http.converter.StringHttpMessageConverter@f68f0dc]
+[줍기2]
 {"received_money":3285,"resultCode":"SUCCESS","received_id":"yonghw3"}
-15:52:53.109 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8080/money/share/pay/182"
-15:52:53.109 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [text/plain, application/json, application/*+json, */*]
-15:52:53.119 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8080/money/share/pay/182" resulted in 200 (null)
-15:52:53.120 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [java.lang.String] as "application/json;charset=UTF-8" using [org.springframework.http.converter.StringHttpMessageConverter@14bdbc74]
+[줍기3]
 {"received_money":5605,"resultCode":"SUCCESS","received_id":"yonghw4"}
-15:52:53.136 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8080/money/share/pay/182"
-15:52:53.136 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [text/plain, application/json, application/*+json, */*]
-15:52:53.143 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8080/money/share/pay/182" resulted in 200 (null)
-15:52:53.144 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [java.lang.String] as "application/json;charset=UTF-8" using [org.springframework.http.converter.StringHttpMessageConverter@12591ac8]
+[줍기4, 이미 있는 경우]
 {"resultCode":"ALREADY_RECIVED"}
-15:52:53.163 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8080/money/share/pay/182"
-15:52:53.175 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [text/plain, application/json, application/*+json, */*]
-15:52:53.183 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8080/money/share/pay/182" resulted in 200 (null)
-15:52:53.187 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [java.lang.String] as "application/json;charset=UTF-8" using [org.springframework.http.converter.StringHttpMessageConverter@5a7fe64f]
+[줍기5, 뿌린자가 주우려 하는 경우]
 {"resultCode":"NOT_RECIVER"}
-15:52:53.194 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8080/money/share/result/182"
-15:52:53.194 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [text/plain, application/json, application/*+json, */*]
-15:52:53.204 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8080/money/share/result/182" resulted in 200 (null)
-15:52:53.204 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [java.lang.String] as "application/json;charset=UTF-8" using [org.springframework.http.converter.StringHttpMessageConverter@38145825]
+
+[줍기, 조회결과]
+{"resultCode":"NOT_RECIVER"}
 {"sharedMoneys":[{"key":"182_yonghw2","id":"yonghw2","money":3285,"tokenId":"182"},{"key":"182_yonghw3","id":"yonghw3","money":3285,"tokenId":"182"},{"key":"182_yonghw4","id":"yonghw4","money":5605,"tokenId":"182"}],"shareTime":"2020-06-27T06:52:53.006+0000","resultCode":"SUCCESS","shareMoney":10000}
-15:52:53.216 [main] DEBUG org.springframework.web.client.RestTemplate - Created POST request for "http://localhost:8080/money/share/result/182"
-15:52:53.216 [main] DEBUG org.springframework.web.client.RestTemplate - Setting request Accept header to [text/plain, application/json, application/*+json, */*]
-15:52:53.223 [main] DEBUG org.springframework.web.client.RestTemplate - POST request for "http://localhost:8080/money/share/result/182" resulted in 200 (null)
-15:52:53.223 [main] DEBUG org.springframework.web.client.RestTemplate - Reading [java.lang.String] as "application/json;charset=UTF-8" using [org.springframework.http.converter.StringHttpMessageConverter@7dc19a70]
+
+[뿌린자가 아닌 유저가 조회할 경우]
 {"resultCode":"NOT_OWNER"}
 
 
